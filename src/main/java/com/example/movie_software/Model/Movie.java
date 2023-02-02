@@ -23,8 +23,8 @@ public class Movie {
 //    Length more than 3
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(columnDefinition = "varchar(3) not null")
-    @Max(value = 3)
+    //@Column(columnDefinition = "int not null")
+    @Min(value = 3)
     private Integer id;
 
 
