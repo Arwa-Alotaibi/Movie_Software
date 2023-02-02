@@ -24,7 +24,7 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(columnDefinition = "varchar(3) not null")
-    @Min(value = 3)
+    @Max(value = 3)
     private Integer id;
 
 
@@ -50,7 +50,7 @@ public class Movie {
     @NotNull(message = "cannot be null")
     @Min(value = 1  ,message ="must be between 1 - 5")
     @Max(value = 5)
-    @Column(columnDefinition = "varchar(20) not null check (rating >1 and rating <=5 ) " )
+    @Column(columnDefinition = "int not null check (rating >1 and rating <=5 ) " )
     private int rating ;
 
 //    duration :
@@ -58,10 +58,10 @@ public class Movie {
 //    It must be more than 60
     @NotNull(message = "cannot be null")
     @Min(value = 60)
-    @Column(columnDefinition = "varchar(20) not null check (duration >=60) " )
+    @Column(columnDefinition = "int not null check (duration >=60) " )
     private int duration ;
 
-    @Column(columnDefinition = "varchar(20) not null  " )
+    @Column(columnDefinition = "int not null  " )
     private int directorID;
 
 
