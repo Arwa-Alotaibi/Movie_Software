@@ -1,5 +1,6 @@
 package com.example.movie_software.Repository;
 
+import com.example.movie_software.Model.Director;
 import com.example.movie_software.Model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -19,6 +20,13 @@ public interface MovieRepository extends JpaRepository<Movie,Integer> {
 
     List<Movie> findAllByDirectorID(int directorID);
     Movie findMovieByDirectorID(int directorID);
+
+    Movie findMovieByName(String name);
+
+   // List<Movie> findAllByDirector(Director director);
+
+
+
 
 
 

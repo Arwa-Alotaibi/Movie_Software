@@ -1,6 +1,8 @@
 package com.example.movie_software.Controller;
 
 
+import com.example.movie_software.Model.Director;
+import com.example.movie_software.Service.DirecterService;
 import com.example.movie_software.Service.MovieService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +14,11 @@ import java.util.List;
 public class MovieController {
 
     private MovieService movieService;
+    private DirecterService directerService;
 
-    public MovieController(MovieService movieService){
+    public MovieController(MovieService movieService,DirecterService directerService){
         this.movieService=movieService;
+        this.directerService=directerService;
     }
     @GetMapping("/getmovie")
     public ResponseEntity GetMovie( ){
@@ -69,9 +73,21 @@ public class MovieController {
 
    // Create endpoint that takes movie name and return the director name
     @GetMapping("/moviename/{name}")
-    public ResponseEntity ReturnDirecterName(@PathVariable String name){
+    public ResponseEntity ReturnDirecterNamee(@PathVariable String name ){
         return ResponseEntity.status(200).body(movieService.ReturnDirecterName(name));
 
     }
+    //Create endpoint to list movies to a specific director
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity ListMovies(@PathVariable Integer id){
+        List<Movie> movies = movieService.ListMovieSpecificDirector(id);
+        return ResponseEntity.status(200).body(movies);
+
+    }
+
+
+
+
 
 }

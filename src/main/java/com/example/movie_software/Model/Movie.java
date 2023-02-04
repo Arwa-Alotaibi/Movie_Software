@@ -24,7 +24,7 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(columnDefinition = "int not null")
-    @Min(value = 3)
+   // @Min(value = 3)
     private Integer id;
 
 
@@ -64,7 +64,9 @@ public class Movie {
     @Column(columnDefinition = "int not null  " )
     private int directorID;
 
-
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="directorID")
+//    private Director director;
 
 
 

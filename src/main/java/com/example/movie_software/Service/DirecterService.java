@@ -38,14 +38,6 @@ public class DirecterService {
         directerRepository.delete(directerdelete);
     }
 
-    //list movies to a specific director
-    public List <Movie> ListMovieSpecificDirector(Integer id){
-        List<Movie> movie =movieRepository.findAllByDirectorID(id);
-        if(movie.isEmpty()){
-            throw new ApiException("id not found");
-        }
-        return movie;
-    }
 
 
 

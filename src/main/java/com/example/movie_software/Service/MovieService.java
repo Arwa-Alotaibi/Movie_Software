@@ -50,7 +50,7 @@ public class MovieService {
 
     //search for a specific movie by title
     public Movie  MovieSearch(String name){
-        Movie moviesearch = movieRepository.findByName(name);
+        Movie moviesearch = movieRepository.findMovieByName(name);
         if(moviesearch==null){
             throw new ApiException("title not found!");
         }
@@ -76,7 +76,7 @@ public class MovieService {
     }
    // takes movie name and return the rate of the movie
     public int ReturnRate(String name){
-        Movie movies= movieRepository.findByName(name);
+        Movie movies= movieRepository.findMovieByName(name);
         if(movies==null){
             throw new ApiException("rate not found");
         }
@@ -85,7 +85,7 @@ public class MovieService {
 
     // takes movie name and return the duration of the movie
     public int ReturnDuration(String name){
-        Movie movie= movieRepository.findByName(name);
+        Movie movie= movieRepository.findMovieByName(name);
         if(movie==null){
             throw new ApiException("name not found");
         }
@@ -93,18 +93,27 @@ public class MovieService {
     }
 
     // takes movie name and return the director name
-    public Director ReturnDirecterName(String name){
-        Movie movie = movieRepository.findByName(name);
-        if(movie==null){
-            throw new ApiException("name not found");
-        }
+    public String ReturnDirecterName(String name){
+        Movie movie = movieRepository.findMovieByName(name);
         Director director =directerRepository.findDirectorById(movie.getDirectorID());
-        if( director.getId()!=movie.getDirectorID()){
-            throw new ApiException("not match");
+        if(movie==null){
+            throw new ApiException("name not found or id not found");
         }
-        return directerRepository.findDirectorByName(director.getName());
-
+        return director.getName();
     }
+
+
+      //list movies to a specific director
+    public List <Movie> ListMovieSpecificDirector(Integer id){
+        List<Movie> movie =movieRepository.findAllByDirectorID(id);
+        if(movie.isEmpty()){
+            throw new ApiException("list  not found");
+        }
+        return movie;
+    }
+
+
+
 
 
 

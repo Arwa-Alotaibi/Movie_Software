@@ -40,11 +40,5 @@ public class DirectorController {
         return ResponseEntity.status(200).body("deleted directer ");
     }
 
-    //Create endpoint to list movies to a specific director
-    @GetMapping("/find/{id}")
-    public ResponseEntity ListMovies(@PathVariable Integer id){
-        List<Movie> movies = directerService.ListMovieSpecificDirector(id);
-        return ResponseEntity.status(200).body(movies);
 
-    }
 }
